@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ArrowLeft, CreditCard, Landmark, Grid3x3, Lock, ShieldCheck, Info } from 'lucide-react'
 import { useEnrollment } from '../context/EnrollmentContext'
+import { API_BASE } from '../config'
 
 const methods = [
   { id: 'card', label: 'Pay with Card', icon: CreditCard },
@@ -24,7 +25,7 @@ export default function Payment() {
     setError('')
     setProcessing(true)
     try {
-      const res = await fetch('/api/payment/charge', {
+      const res = await fetch(`${API_BASE}/api/payment/charge`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ method, amount: enrollment.total, course: enrollment.course })

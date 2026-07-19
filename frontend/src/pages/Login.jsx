@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { User, Lock, Eye, EyeOff, ArrowRight } from 'lucide-react'
 import AuthLayout from '../components/AuthLayout'
+import { API_BASE } from '../config'
 
 export default function Login() {
   const navigate = useNavigate()
@@ -15,7 +16,7 @@ export default function Login() {
     e.preventDefault()
     setError('')
     try {
-      const res = await fetch('/api/auth/login', {
+      const res = await fetch(`${API_BASE}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)

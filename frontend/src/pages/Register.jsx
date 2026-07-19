@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { User, Mail, Phone, Lock, Eye, EyeOff, GraduationCap, BookOpen } from 'lucide-react'
 import AuthLayout from '../components/AuthLayout'
+import { API_BASE } from '../config'
 import { useEnrollment } from '../context/EnrollmentContext'
 import { courses, PROGRAM_NAME } from '../data/courses'
 
@@ -40,7 +41,7 @@ export default function Register() {
     if (course) setSelectedCourse(course)
 
     try {
-      const res = await fetch('/api/auth/register', {
+      const res = await fetch(`${API_BASE}/api/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
